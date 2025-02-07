@@ -13,20 +13,25 @@ let garagePageInstance: GaragePage;
 let sidebarPanelComponent: SidebarPanelComponent;
 
 export const fixturesUserGaragePage = base.extend<fixturesPages>({
-  userGaragePage: async ({}, use) => {
-    const browser = await chromium.launch();
+  context: async ({ browser }, use) => {
     const context = await browser.newContext({
       storageState: './e2e/setup/helper/currentUser.json',
     });
+    await use(context);
+    await context.close();
+  },
+
+  userGaragePage: async ({ context }, use) => {
+    // const browser = await chromium.launch();
+    // const context = await browser.newContext({
+    //   storageState: './e2e/setup/helper/currentUser.json',
+    // });
     const page = await context.newPage();
 
-    await page.goto('panel/garage');
-
     garagePageInstance = new GaragePage(page);
+
+    await garagePageInstance.openPage();
     await use(garagePageInstance);
-    // garagePageInstance.openPage();
-    // sidebarPanelComponent.logOutNavigateButtonClick();
-    // garagePageInstance.removeCar();
-    // await garagePageInstance.page.close();
+    await garagePageInstance.removeCar();
   },
 });

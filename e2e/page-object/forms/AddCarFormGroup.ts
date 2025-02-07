@@ -10,14 +10,17 @@ export class AddCarFormGroup {
 
   constructor(page: Page) {
     this.page = page;
+    this.brandSelectField = page.locator('//select [@id="addCarBrand"]');
+    this.modelSelectField = page.getByLabel('Model');
+    this.mileageInputField = page.getByLabel('Mileage');
   }
 
   async selectBrand(brand) {
-    await this.brandSelectField.selectOption(brand);
+    await this.brandSelectField.fill(brand);
   }
 
   async selectModel(model) {
-    await this.modelSelectField.selectOption(model);
+    await this.modelSelectField.fill(model);
   }
 
   async typeMileage(number) {
