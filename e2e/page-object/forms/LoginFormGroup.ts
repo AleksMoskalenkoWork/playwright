@@ -9,8 +9,9 @@ export class LoginFormGroup {
 
   constructor(page: Page) {
     this.page = page;
-    this.getInputEmailField = page.getByLabel('signinEmail');
+    this.getInputEmailField = page.getByLabel('Email');
     this.getInputPasswordField = page.getByLabel('Password');
+    this.getButtonLogin = page.getByRole('button', { name: 'Login' });
   }
 
   async enterEmail() {
@@ -18,10 +19,10 @@ export class LoginFormGroup {
   }
 
   async enterPassword() {
-    await this.getInputEmailField.fill(testUserData.correct.password);
+    await this.getInputPasswordField.fill(testUserData.correct.password);
   }
 
   async clickLoginButton() {
-    await this.getInputEmailField.fill(testUserData.correct.password);
+    await this.getButtonLogin.click();
   }
 }
