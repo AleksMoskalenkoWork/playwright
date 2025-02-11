@@ -53,7 +53,14 @@ export default defineConfig({
     {
       name: 'e2e',
       use: { ...devices['Desktop Chrome'] },
+      testIgnore: 'homeWork-28.1/*.ts',
       dependencies: ['setup'],
+    },
+
+    {
+      name: 'api',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: 'homeWork-28.1/*.ts',
     },
 
     // {
