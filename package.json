@@ -4,14 +4,16 @@
   "main": "index.js",
   "scripts": {
     "run:ui": "npx playwright test --ui",
-    "run:cli": "npx playwright test"
+    "run:cli": "npx playwright test",
+    "docker:build": "docker build -t playwright-test .",
+    "docker:run": "docker run playwright-test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@playwright/test": "^1.49.1",
+    "@playwright/test": "^1.50.1",
     "@types/node": "^22.10.7"
   },
   "dependencies": {
